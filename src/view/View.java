@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Date;
 import model.ListOfTasks;
-import model.Task;
 
 public class View  {
 	
@@ -13,11 +13,10 @@ public class View  {
 	private static final int OPTION_2 = 2;
 	private static final int OPTION_3 = 3;
 	private static final int OPTION_4 = 4;
-	
+	private ListOfTasks list;
 	private UsersChoiceListener usersChoiceListener;
 	private UsersChoiceEvent event;
 	private String welcome;
-	private String nextAction;
 	private int tasksToDo;
 	private int tasksCompleted;
 	private Scanner scanner;
@@ -30,7 +29,8 @@ public class View  {
 													">> (4) Save and Quit\n"));
 
 	public View(ListOfTasks list) {
-	
+		
+		this.list = list;
 		this.tasksToDo = list.getSize();
 		this.tasksCompleted = list.numberTasksCompleted();
 				
@@ -48,40 +48,165 @@ public class View  {
 	}
 	
 	public void displayMainMenu() {
-		
 		mainOptions.forEach(System.out::println);
 		
+		
+		//put that in a different method
 		int usersChoice = chooseMainOptions();
 		
 		
 		switch(usersChoice){
-		
 			case OPTION_1:
 				this.event = new UsersChoiceEvent(chooseSorting());
-				userChoiceMade();
 				break;
 			case OPTION_2:
 				this.event = createAddEvent();
-				userChoiceMade();
 				break;
 			case OPTION_3:
+				this.event = createEditEvent();
 				break;
 			case OPTION_4:
+				this.event = new UsersChoiceEvent("4");
 				this.scanner.close();
 				System.out.println("See you next time!");
 				this.isRunning = false;
-				
 		}
-		
+		userChoiceMade();
 	}
 	
+	private UsersChoiceEvent createEditEvent() {
+		String taskId = chooseTaskId();
+		String action = chooseEditAction();
+		String title = null;
+		if(action.equals(Options.UPDATE.toString().toLowerCase())) {
+			title = editTaskTitle();
+		}
+		
+		return new UsersChoiceEvent(action, taskId, title);
+	}
+	
+	private String chooseTaskId() {
+	
+		String userInput = null;
+		
+		System.out.println("Please enter the id of the task that you would like to edit.");
+		System.out.println("Tip: you can copy paste the id that you need and press enter!");
+		
+		do {
+			userInput = this.scanner.nextLine();
+			
+			if(list.isIdValid(userInput)) {
+				break;
+			} else {
+				System.out.println("Task ID not found. Please try again!");
+			}
+			
+		} while(true);
+		
+		return userInput;
+	}
+
+	private String chooseEditAction() {
+		String userInput = null;
+		String optionDone = Options.DONE.toString().toLowerCase();
+		String optionUpdate = Options.UPDATE.toString().toLowerCase();		
+		String optionRemove = Options.REMOVE.toString().toLowerCase();
+		
+		System.out.println("What changes would you like to make?");
+		System.out.println("Type 'update' to update the title,"
+							+ "'done' to mark the task as done "
+							+ "or 'remove' to delete the task");
+		
+		do {	
+			userInput = scanner.next().toLowerCase();
+			
+			if(userInput.equals(optionDone) || userInput.equals(optionUpdate) || userInput.equals(optionRemove)){
+				break;
+			} else {
+				System.out.println("Invalid command, please choose from the following commands:\n" 
+									+ optionUpdate + ", " + optionDone + ", " + optionRemove);
+			}		
+		} while (true);
+		
+		
+		return userInput;
+	}
+	
+	private String editTaskTitle() {
+		System.out.println("Please enter your new title:");
+		String newTitle = null;
+		scanner.nextLine();
+		do {
+			newTitle = scanner.nextLine();
+			
+			if(newTitle.length()>0) {
+				break;
+			} else {
+				System.out.println("Oops! You have not entered the title. Please try again!");
+			}
+		} while (true);
+		
+		
+		return newTitle;
+		
+	}
+
 	private UsersChoiceEvent createAddEvent() {
+	
+		String title = inputTaskTitle();
+		Date dueDate = inputTaskDueDate();
+		String project = inputTaskProject();
 		
-		this.event.setTitle(inputTaskTitle());
-		this.event.setDueDate(inputTaskDueDate());
-		this.event.setProject(inputTaskProject());
+		return new UsersChoiceEvent (title, dueDate, project, "2");
+	}
+
+	private String inputTaskProject() {
+		System.out.println("Enter the name of the project: ");
+		String projectName = null;
 		
-		return null;
+		do {
+			projectName = this.scanner.nextLine();
+		} while(projectName == null);
+		
+		return projectName;
+	}
+
+	private Date inputTaskDueDate() {
+		System.out.println("Enter the due date in the following format - YYYY-MM-DD");
+		String userInput = null;
+		
+		do {
+		
+			userInput = this.scanner.nextLine();
+			
+			if(Date.validateDate(userInput)) {
+				break;
+			} else {
+				System.out.println("Please enter the date in the format YYYY-MM-DD");
+			}
+			
+		} while(true);
+		
+		Date date = new Date(userInput);
+		return date;
+	}
+	
+	//TODO: fix it!
+	private String inputTaskTitle() {
+		System.out.println("Enter the title of the task: ");
+		String title = null;
+		do {
+			title = scanner.nextLine();
+			
+			if(title.length()>0) {
+				break;
+			} else {
+				System.out.println("Oops! You have not entered the title. Please try again!");
+			}
+		} while (true);
+		
+		
+		return title;
 	}
 
 	private int chooseMainOptions() {
@@ -108,29 +233,24 @@ public class View  {
 	
 	private String chooseSorting() {
 		String userInput = "";
-		
 		String optionDate = Options.DATE.toString().toLowerCase();
-		
 		String optionProject = Options.PROJECT.toString().toLowerCase();
 		
 		System.out.println("To show tasks by date, use command: " + optionDate);
 		System.out.println("If you want to sort by project, use command: " + optionProject);
 		
 		do {
-			userInput = scanner.next().toLowerCase();
 			
+			userInput = scanner.next().toLowerCase();
 			
 			if(userInput.equals(optionDate) || userInput.equals(optionProject)){
 				break;
 			} else {
 				System.out.println("Invalid command, please choose either " + optionDate + " or " + optionProject);
 			}
-			
-			
+				
 		} while (true);
 		
-		
-		System.out.println("You chose: " + userInput);
 		
 		return userInput;
 	}

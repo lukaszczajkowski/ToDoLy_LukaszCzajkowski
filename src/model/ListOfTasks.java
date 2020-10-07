@@ -15,6 +15,7 @@ public class ListOfTasks implements Serializable {
 	
 	public void addTask(Task task) {
 		listOfTasks.add(task);
+		
 	}
 	
 	public List<Task> getListOfTasks(){
@@ -61,24 +62,37 @@ public class ListOfTasks implements Serializable {
 		return false;
 	}
 	
-	public Task getTaskById(int id) {
-		
+	public Task getTaskById(String id) {
 		int index = 0;
-		Task task = null;
 		
-		while(task.getTaskID() != id && index < listOfTasks.size()) {
+		Task currentTask = null;
+		
+		while(index < listOfTasks.size()) {
+			currentTask = listOfTasks.get(index);
 			
-			task = listOfTasks.get(index);
+			if(currentTask.getTaskID().equals(id)) {
+				break;
+			}
+			
 			index++;
-		
 		}
 		
-		return task;
-		
+		return currentTask;
 	}
 	
-	public boolean isIdValid(int id) {
+	public boolean isIdValid(String id) {
+		int index = 0;
+		
+		while(index < this.getSize()) {
+			String currentId = this.getListOfTasks().get(index).getTaskID();
+			if(id.equals(currentId)) {
+				return true;
+			}
+			index++;
+		}
 		return false;
 	}
+	
+	
 
 }

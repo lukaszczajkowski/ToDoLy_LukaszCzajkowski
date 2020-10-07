@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class Task implements Serializable {
 	
@@ -9,14 +10,14 @@ public class Task implements Serializable {
 	private Date dueDate;
 	boolean isCompleted;
 	private String project;
-	private int taskID = 1;
+	private final String taskId;
 	
 	public Task(String title, Date dueDate, String project) {
 		this.title = title;
 		this.dueDate = dueDate;
 		this.project = project;
 		this.isCompleted = false;
-		this.taskID++;
+		this.taskId = UUID.randomUUID().toString();
 	}
 
 	public String getTitle() {
@@ -52,17 +53,14 @@ public class Task implements Serializable {
 	}
 	
 
-	public int getTaskID() {
-		return taskID;
+	public String getTaskID() {
+		return taskId;
 	}
 
-	public void setTaskID(int taskID) {
-		this.taskID = taskID;
-	}
 
 	@Override
 	public String toString() {
-		return  "Task ID: " + taskID +
+		return  "Task ID: " + taskId +
 				"\nTask: " + title + 
 				"\nDue date: " + dueDate + 
 				"\nStatus: " + (isCompleted ? "done!" : "in progress") + 

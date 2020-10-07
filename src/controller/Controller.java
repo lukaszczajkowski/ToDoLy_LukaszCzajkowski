@@ -1,6 +1,7 @@
 package controller;
 
 import model.Date;
+import model.FileManagement;
 import model.ListOfTasks;
 import model.Task;
 import view.Options;
@@ -21,7 +22,9 @@ public class Controller implements UsersChoiceListener{
 
 	@Override
 	public void choiceMade(UsersChoiceEvent event) {
+		
 		this.event = event;
+		
 		String choice = event.getChoice();
 		String date = Options.DATE.toString().toLowerCase();
 		String project = Options.PROJECT.toString().toLowerCase();
@@ -29,6 +32,7 @@ public class Controller implements UsersChoiceListener{
 		String done = Options.DONE.toString().toLowerCase();
 		String remove = Options.REMOVE.toString().toLowerCase();
 		String add = "2";
+		String saveAndQuit = "4";
 		
 		if(choice.equals(date)) {
 			list.sortByDate();
@@ -36,14 +40,33 @@ public class Controller implements UsersChoiceListener{
 		} else if (choice.equals(project)) {
 			list.sortByProject();
 			displayList();
-		} else if (choice.equals(update)) {
-			int taskId = event.getId();
-			//searchForTask(taskId);
+		} else if (choice.equals(update) || choice.equals(remove) || choice.equals(done)) {
+			String taskId = event.getId();
+			String title = event.getTitle();
+			editTask(taskId, choice, title);
 		} else if (choice.equals(add)) {
 			addTask();
+		} else if(choice.equals(saveAndQuit)) {
+			System.out.println("Saving file...");
+			FileManagement.saveList(list.getListOfTasks());
+			System.out.println("Saving file completed!");
 		}
 	}
 	
+	private void editTask(String taskId, String userAction, String title) {
+		
+		Task task = list.getTaskById(taskId);
+		
+		if(userAction.equals(Options.UPDATE.toString().toLowerCase())) {
+			task.setTitle(title);
+		} else if (userAction.equals(Options.DONE.toString().toLowerCase())) {
+			task.setCompleted(true);
+		} else if (userAction.equals(Options.REMOVE.toString().toLowerCase())) {
+			list.removeTask(task);
+		}
+		
+	}
+
 	public void displayList() {
 		
 		if (this.list.getListOfTasks().size() == 0) {
@@ -60,9 +83,9 @@ public class Controller implements UsersChoiceListener{
 	public void addTask() {
 		String title =  event.getTitle();
 		Date dueDate = event.getDueDate();
-		isCompleted = event.isCompleted();
 		String project = event.getProject();
-		taskID = event.getTask();
+		
+		list.addTask(new Task(title, dueDate, project));
 	}
 	
 //	public Task searchForTask(int taskId) {

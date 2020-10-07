@@ -13,6 +13,7 @@ public class App {
 	}
 
 	public static void run() {
+		
 		ListOfTasks list = new ListOfTasks();
 		View view = new View(list);
 		Controller controller = new Controller(view, list);

@@ -191,7 +191,6 @@ public class View  {
 		return date;
 	}
 	
-	//TODO: fix it!
 	private String inputTaskTitle() {
 		System.out.println("Enter the title of the task: ");
 		String title = null;

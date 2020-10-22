@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ListOfTasks implements Serializable {
 	
@@ -11,6 +13,11 @@ public class ListOfTasks implements Serializable {
 	
 	public ListOfTasks() {
 		this.listOfTasks = FileManagement.readList();
+	}
+
+	//for testing purposes only
+	public ListOfTasks(List<Task> list){
+		this.listOfTasks = new ArrayList<>();
 	}
 	
 	public void addTask(Task task) {
@@ -28,14 +35,12 @@ public class ListOfTasks implements Serializable {
 	
 	
 	public int numberTasksCompleted() {
-		int numTasksCompleted = 0;
-		for(var task : listOfTasks) {
-			if(task.isCompleted) {
-				numTasksCompleted++;
-			}
-		}
-		
-		return numTasksCompleted;
+		Optional<Integer> countFromStream = listOfTasks.stream()
+		.filter(t -> t.isCompleted())
+		.map(t -> 1)
+		.reduce((total, count) -> (total + count));
+
+		return countFromStream.isPresent() ? countFromStream.get() : 0;
 	}
 	
 	public void sortByDate() {
@@ -44,14 +49,6 @@ public class ListOfTasks implements Serializable {
 	
 	public void sortByProject() {
 		Collections.sort(listOfTasks, new ProjectCompare());
-	}
-	
-	public void updateTask(Task task) {
-		
-	}
-	
-	public void markAsDone(Task task) {
-		
 	}
 	
 	public boolean removeTask(Task task) {

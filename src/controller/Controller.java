@@ -72,10 +72,10 @@ public class Controller implements UsersChoiceListener{
 		if (this.list.getListOfTasks().size() == 0) {
 			System.out.println("There are no tasks to display. You can add a new task by pressing 2");
 		} else {
-			for(Task task: this.list.getListOfTasks()) {
-				System.out.println(task.toString());
+			this.list.getListOfTasks().forEach(task -> {
+				System.out.println(task);
 				System.out.println();
-			}			
+			});			
 		}	
 		
 	}
@@ -88,19 +88,5 @@ public class Controller implements UsersChoiceListener{
 		list.addTask(new Task(title, dueDate, project));
 	}
 	
-//	public Task searchForTask(int taskId) {
-//		while()
-//	}
-
-
 
 }
-
-
-/*
-	UPDATE,
-	DONE,
-	REMOVE,
-	DATE,
-	PROJECT
-*/

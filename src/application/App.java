@@ -1,10 +1,7 @@
 package application;
 
-import java.util.Iterator;
-
 import controller.Controller;
 import model.ListOfTasks;
-import model.Task;
 import view.View;
 
 public class App {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="application.model.DateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-10-24T14:19:12" hostname="SDA-11-mbpro" time="0.029">
+  <properties/>
+  <testcase name="getDayTest()" classname="application.model.DateTest" time="0.017"/>
+  <testcase name="getMonthTest()" classname="application.model.DateTest" time="0.002"/>
+  <testcase name="getYearTest()" classname="application.model.DateTest" time="0.002"/>
+  <testcase name="validateDateTestPositive()" classname="application.model.DateTest" time="0.002"/>
+  <testcase name="validateDateTestNegative()" classname="application.model.DateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

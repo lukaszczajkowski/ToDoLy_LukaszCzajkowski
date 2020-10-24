@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="application.model.ListOfTasksTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2020-10-24T14:19:12" hostname="SDA-11-mbpro" time="0.051">
+  <properties/>
+  <testcase name="removeTaskTest()" classname="application.model.ListOfTasksTest" time="0.005"/>
+  <testcase name="addTaskTest()" classname="application.model.ListOfTasksTest" time="0.001"/>
+  <testcase name="getSizeTest()" classname="application.model.ListOfTasksTest" time="0.002"/>
+  <testcase name="sortByProjectTest()" classname="application.model.ListOfTasksTest" time="0.021"/>
+  <testcase name="numberTasksCompletedTest()" classname="application.model.ListOfTasksTest" time="0.007"/>
+  <testcase name="sortByDateTest()" classname="application.model.ListOfTasksTest" time="0.002"/>
+  <system-out><![CDATA[Actual = 0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

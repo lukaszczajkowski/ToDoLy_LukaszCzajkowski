@@ -1,0 +1,24 @@
+model/ProjectCompare.java
+ model.ProjectCompare
+model/ListOfTasks.java
+ model.ListOfTasks
+view/UsersChoiceListener.java
+ view.UsersChoiceListener
+view/View.java
+ view.View
+model/Task.java
+ model.Task
+model/Date.java
+ model.Date
+view/Options.java
+ view.Options
+model/DateCompare.java
+ model.DateCompare
+view/UsersChoiceEvent.java
+ view.UsersChoiceEvent
+controller/Controller.java
+ controller.Controller
+application/App.java
+ application.App
+model/FileManagement.java
+ model.FileManagement

@@ -1,5 +1,6 @@
 # ToDoLy_LukaszCzajkowski
 ToDoLy is an application that allows the user to add, edit and remove tasks in the todo list via a command-line interface.
+It enables the user to view, sort, remove and update the tasks.
 
 ## Usage
 

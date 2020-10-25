@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * This class is responsible for managing the dates. It checks whether the date is valid
+ * and returns the date in a YYYY-MM-DD format.
+ * @author lukaszczajkowski
+ */
 public class Date implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -10,6 +15,10 @@ public class Date implements Serializable {
 	private final int day;
 	private final String userDate;
 
+	/**
+	 * Constructor that creates a {@link Date} object from a String
+	 * @param userDate
+	 */
 	public Date(String userDate) {
 		this.userDate = userDate;
 		String[] userDateArray = userDate.split("-");
@@ -18,18 +27,34 @@ public class Date implements Serializable {
 		this.day = Integer.parseInt(userDateArray[2]);
 	}
 
+	/**
+	 * Returns the year from the date
+	 * @return int - year
+	 */
 	public int getYear() {
 		return year;
 	}
 
+	/**
+	 * Returns the month from the date
+	 * @return int - month
+	 */
 	public int getMonth() {
 		return month;
 	}
 
+	/**
+	 * Returns the day from the date
+	 * @return int - day
+	 */
 	public int getDay() {
 		return day;
 	}
 
+	/**
+	 * Calculates the hash code of the object
+	 * @return int hash code
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,6 +65,11 @@ public class Date implements Serializable {
 		return result;
 	}
 
+	/**
+	 * Compares two date objects
+	 * @param obj - object to compare
+	 * @return boolean - true if objects are equal, false if not
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -56,16 +86,27 @@ public class Date implements Serializable {
 		return year == other.year;
 	}
 
+	/**
+	 * Returns the date in the YYYY-MM-DD format
+	 * @return String - date
+	 */
 	@Override
 	public String toString() {
 		return userDate;
 	}
 
+	/**
+	 * Takes the date from the user input and validates whether it is valid.
+	 * It takes into account the number of months and correctness of the year.
+	 * Then it redirects to the validateDay method.
+	 * @param userInput String - the date from the user input
+	 * @return boolean - the return value of the validateDay method
+	 */
 	public static boolean validateDate(String userInput) {
 
 		String[] userInputArray = userInput.split("-");
 
-		if (userInputArray.length > 3 || userInputArray.length < 3) {
+		if (userInputArray.length != 3) {
 			return false;
 		}
 
@@ -88,6 +129,13 @@ public class Date implements Serializable {
 		return validateDay(yearNum, monthNum, dayNum);
 	}
 
+	/**
+	 * Validates the day based on the number of the month and year.
+	 * @param yearNum
+	 * @param monthNum
+	 * @param dayNum
+	 * @return boolean true if the day is correct, false if not
+	 */
 	private static boolean validateDay(int yearNum, int monthNum, int dayNum) {
 		
 		//checking if the year is a lap year

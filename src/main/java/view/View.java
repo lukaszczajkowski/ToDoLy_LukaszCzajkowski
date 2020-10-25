@@ -28,6 +28,13 @@ public class View  {
 													">> (3) Edit Task(update, mark as done, remove)",
 													">> (4) Save and Quit\n"));
 
+	/**
+	 * Constructor to create a View objects based on the list
+	 * from the {@link ListOfTasks} class.
+	 * It initializes the list, sets up the number of tasks to do and tasks completed,
+	 * the welcome message, runs the {@link Scanner} and sets isRunning to true
+	 * @param list - object from {@link ListOfTasks}
+	 */
 	public View(ListOfTasks list) {
 		
 		this.list = list;
@@ -42,19 +49,41 @@ public class View  {
 		this.scanner = new Scanner(System.in);
 		this.isRunning = true;
 	}
-	
+
+	/**
+	 * Displays the welcome message
+	 */
 	public void displayWelcome() {
 		System.out.println(welcome);
 	}
-	
+
+	/**
+	 * Displays the main menu and goes directly to
+	 * mainMenuOptions method
+	 */
 	public void displayMainMenu() {
 		mainOptions.forEach(System.out::println);
-		
-		
-		//put that in a different method
+
+		mainMenuOptions();
+	}
+
+	/**
+	 * Receives the option chosen by the user from the main menu
+	 * and creates a {@link UsersChoiceEvent} object with the information about the
+	 * choice made by the user.
+	 * It redirects to the following methods based on the choices below:
+	 * 1 - chooseSorting
+	 * 2 - createAddEvent
+	 * 3 - createEditEvent
+	 * 4 - creates {@link UsersChoiceEvent} object, closes the scanner,
+	 * displays the goodbye message and sets the isRunning false which stops the program
+	 * from running.
+	 *
+	 * Finally, in cases 1-3, it invokes userChoiceMade method
+	 */
+	private void mainMenuOptions(){
 		int usersChoice = chooseMainOptions();
-		
-		
+
 		switch(usersChoice){
 			case OPTION_1:
 				this.event = new UsersChoiceEvent(chooseSorting());
@@ -73,7 +102,12 @@ public class View  {
 		}
 		userChoiceMade();
 	}
-	
+
+	/**
+	 * Creates the edit event by redirecting to chooseTaskId method, then to chooseEditAction method.
+	 * In case an option 'update' has been chosen, it also redirects to editTaskTitle method.
+	 * @return UsersChoiceEvent object with parameters action, taskId and title
+	 */
 	private UsersChoiceEvent createEditEvent() {
 		String taskId = chooseTaskId();
 		String action = chooseEditAction();
@@ -84,7 +118,12 @@ public class View  {
 		
 		return new UsersChoiceEvent(action, taskId, title);
 	}
-	
+
+	/**
+	 * Asks the user for the ID of the task to be updated/marked as done/removed
+	 * and validates the user's input
+	 * @return String with the chosen ID
+	 */
 	private String chooseTaskId() {
 	
 		String userInput = null;
@@ -106,6 +145,11 @@ public class View  {
 		return userInput;
 	}
 
+	/**
+	 * Asks the user for the action to be performed when the option 3 was chosen from the main menu.
+	 * It also validates the input.
+	 * @return String "done", "update" or "remove"
+	 */
 	private String chooseEditAction() {
 		String userInput = null;
 		String optionDone = Options.DONE.toString().toLowerCase();
@@ -131,7 +175,11 @@ public class View  {
 		
 		return userInput;
 	}
-	
+
+	/**
+	 * Asks the user for the new title of the task and validates the input.
+	 * @return String new title of the task
+	 */
 	private String editTaskTitle() {
 		System.out.println("Please enter your new title:");
 		String newTitle = null;
@@ -151,6 +199,11 @@ public class View  {
 		
 	}
 
+	/**
+	 * Creates an event of task addition.
+	 * Gets the inputs from inputTaskTitle, inputTaskDueDate and inputTaskProject methods
+	 * @return UsersChoiceEvent object
+	 */
 	private UsersChoiceEvent createAddEvent() {
 	
 		String title = inputTaskTitle();
@@ -160,6 +213,10 @@ public class View  {
 		return new UsersChoiceEvent (title, dueDate, project, "2");
 	}
 
+	/**
+	 * Asks the user for the name of the project and validates the input.
+	 * @return String
+	 */
 	private String inputTaskProject() {
 		System.out.println("Enter the name of the project: ");
 		String projectName = null;
@@ -170,7 +227,11 @@ public class View  {
 		
 		return projectName;
 	}
-
+	/**
+	 * Asks the user for the name of the project and validates the input.
+	 * Then it transforms the string given by the user to the {@link Date} object
+	 * @return {@link Date}
+	 */
 	private Date inputTaskDueDate() {
 		System.out.println("Enter the due date in the following format - YYYY-MM-DD");
 		String userInput = null;
@@ -190,7 +251,11 @@ public class View  {
 		Date date = new Date(userInput);
 		return date;
 	}
-	
+
+	/**
+	 * Asks the user for the title of the task and validates the input
+	 * @return String - title of the task
+	 */
 	private String inputTaskTitle() {
 		System.out.println("Enter the title of the task: ");
 		String title = null;
@@ -203,11 +268,13 @@ public class View  {
 				System.out.println("Oops! You have not entered the title. Please try again!");
 			}
 		} while (true);
-		
-		
 		return title;
 	}
 
+	/**
+	 * Ask the user for choosing one of the options from the main menu
+	 * @return int - main option
+	 */
 	private int chooseMainOptions() {
 		int mainOption = 0;
 		
@@ -229,7 +296,11 @@ public class View  {
 		scanner.nextLine();
 		return mainOption;
 	}
-	
+
+	/**
+	 * Asks the user to choose the sorting method from by date and by project
+	 * @return String - sorting method chosen by the user (date/project)
+	 */
 	private String chooseSorting() {
 		String userInput = "";
 		String optionDate = Options.DATE.toString().toLowerCase();
@@ -253,24 +324,40 @@ public class View  {
 		
 		return userInput;
 	}
-	
-	
+
+	/**
+	 * Fires the {@link UsersChoiceEvent}
+	 */
 	public void userChoiceMade() {
 		
 		fireUsersChoiceEvent(this.event);
 		
 	}
-	
+
+	/**
+	 * Checks whether there is some active {@link UsersChoiceEvent} object and launches
+	 * a choiceMade method on the current one if not
+	 * @param event of class {@link UsersChoiceEvent}
+	 */
 	public void fireUsersChoiceEvent(UsersChoiceEvent event) {
 		if(usersChoiceListener != null) {
 			usersChoiceListener.choiceMade(event);
 		}
 	}
-	
+
+	/**
+	 * Sets the {@link UsersChoiceListener} object
+	 * @param userChoiceListener of class {@link UsersChoiceListener}
+	 */
 	public void setUserChoiceListener(UsersChoiceListener userChoiceListener) {
 		this.usersChoiceListener = userChoiceListener;
 	}
 
+	/**
+	 * Returns the value that determines if the program is running or not.
+	 * If isRunning is true, then the program still runs, if false it stops running.
+	 * @return boolean isRunning
+	 */
 	public boolean isRunning() {
 		return isRunning;
 	}

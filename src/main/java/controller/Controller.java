@@ -9,17 +9,36 @@ import view.UsersChoiceEvent;
 import view.UsersChoiceListener;
 import view.View;
 
+/**
+ * This class is a connector between the view package
+ * and the model package.
+ * It listens to {@link View} and {@link ListOfTasks}
+ * and controls the data flow between these two classes
+ *
+ * @author lukaszczajkowski
+ */
 public class Controller implements UsersChoiceListener{
-	
+
 	private final View view;
 	private final ListOfTasks list;
 	private UsersChoiceEvent event;
 
+	/**
+	 * Constructor to create an object of class {@link Controller}
+	 * that would listen to the {@link View} and the {@link ListOfTasks}
+	 * @param view
+	 * @param list
+	 */
 	public Controller(View view, ListOfTasks list) {
 		this.view = view;
 		this.list = list;
 	}
 
+	/**
+	 * Method takes the {@link UsersChoiceEvent} events created by user in {@link View} class
+	 * and based on that chooses a corespondent action
+	 * @param event - event chosen by the user in {@link View}
+	 */
 	@Override
 	public void choiceMade(UsersChoiceEvent event) {
 		
@@ -52,7 +71,17 @@ public class Controller implements UsersChoiceListener{
 			System.out.println("Saving file completed!");
 		}
 	}
-	
+
+	/**
+	 * Accepts details to edit a task object from the {@link Task} class.
+	 * Possible options:
+	 * - update - when the user wants to update the title of the task
+	 * - done - when the user wants to mark the task as done
+	 * - remove - when the user wants to remove the task from the list
+ 	 * @param taskId - id of the task to be edited given by user in the input
+	 * @param userAction - update, done or remove - options from the user's input
+	 * @param title - new title of the task when option 'update' has been chosen
+	 */
 	private void editTask(String taskId, String userAction, String title) {
 		
 		Task task = list.getTaskById(taskId);
@@ -67,6 +96,11 @@ public class Controller implements UsersChoiceListener{
 		
 	}
 
+	/**
+	 * Displays the list of tasks from the {@link ListOfTasks} class
+	 * or "There are no tasks to display. You can add a new task by pressing 2"
+	 * if the list is empty
+	 */
 	public void displayList() {
 		
 		if (this.list.getListOfTasks().size() == 0) {
@@ -79,7 +113,10 @@ public class Controller implements UsersChoiceListener{
 		}	
 		
 	}
-	
+
+	/**
+	 * Adds a new task to the list based on a even created in {@link View}
+	 */
 	public void addTask() {
 		String title =  event.getTitle();
 		Date dueDate = event.getDueDate();

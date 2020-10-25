@@ -119,3 +119,6 @@ Could not write to file: src/main/resources/list.bin
 Could not read from file: src/main/resources/list.bin
 Error while reading from file: src/main/resources/list.bin
 ```
+
+## Class diagram
+![Alt text](diagram.png?raw=true "ToDoLy class diagram")

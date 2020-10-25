@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="492.0789098972922" y="1248.0">controller.Controller</node>
+    <node x="758.6875000000001" y="850.0">view.View</node>
+    <node x="73.52083333333337" y="470.0">model.FileManagement</node>
+    <node x="782.3863095238097" y="0.0">model.Date</node>
+    <node x="558.5789098972922" y="1406.0">application.App</node>
+    <node x="263.52083333333337" y="482.0">model.DateCompare</node>
+    <node x="417.52083333333337" y="482.0">model.ProjectCompare</node>
+    <node x="607.5208333333334" y="628.0">view.Options</node>
+    <node x="191.98605275443504" y="661.0">model.ListOfTasks</node>
+    <node x="741.5372432306256" y="684.0">view.UsersChoiceListener</node>
+    <node x="152.51580298786195" y="202.0">model.Task</node>
+    <node x="795.6541666666668" y="426.0">view.UsersChoiceEvent</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="view.UsersChoiceEvent" target="model.Date">
+      <point x="43.25" y="-71.0" />
+      <point x="925.4041666666668" y="406.0" />
+      <point x="887.6541666666668" y="406.0" />
+      <point x="887.6541666666668" y="182.0" />
+      <point x="901.3148809523811" y="182.0" />
+      <point x="26.428571428571445" y="71.0" />
+    </edge>
+    <edge source="controller.Controller" target="model.FileManagement">
+      <point x="-59.79166666666663" y="-49.0" />
+      <point x="534.7872432306256" y="1208.0" />
+      <point x="113.02083333333337" y="1208.0" />
+      <point x="-39.5" y="27.0" />
+    </edge>
+    <edge source="model.ListOfTasks" target="model.DateCompare">
+      <point x="38.19999999999999" y="-38.0" />
+      <point x="325.686052754435" y="608.0" />
+      <point x="330.52083333333337" y="608.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="view.View" target="view.UsersChoiceEvent">
+      <point x="15.700000000000045" y="-159.0" />
+      <point x="931.3875000000002" y="830.0" />
+      <point x="954.4875000000002" y="830.0" />
+      <point x="954.4875000000002" y="608.0" />
+      <point x="896.5708333333334" y="608.0" />
+      <point x="14.416666666666629" y="71.0" />
+    </edge>
+    <edge source="view.View" target="model.ListOfTasks">
+      <point x="-141.29999999999995" y="-159.0" />
+      <point x="774.3875000000002" y="820.0" />
+      <point x="335.23605275443504" y="820.0" />
+      <point x="47.75" y="38.0" />
+    </edge>
+    <edge source="model.DateCompare" target="model.Task">
+      <point x="0.0" y="-15.0" />
+      <point x="330.52083333333337" y="406.0" />
+      <point x="271.4443744164334" y="406.0" />
+      <point x="26.428571428571445" y="82.0" />
+    </edge>
+    <edge source="controller.Controller" target="model.Task">
+      <point x="-76.875" y="-49.0" />
+      <point x="517.7039098972922" y="1218.0" />
+      <point x="63.02083333333337" y="1218.0" />
+      <point x="63.02083333333337" y="396.0" />
+      <point x="165.73008870214767" y="396.0" />
+      <point x="-79.28571428571428" y="82.0" />
+    </edge>
+    <edge source="controller.Controller" target="model.Date">
+      <point x="-93.95833333333326" y="-49.0" />
+      <point x="500.62057656395893" y="1228.0" />
+      <point x="48.72176704014936" y="1228.0" />
+      <point x="48.72176704014936" y="162.0" />
+      <point x="795.6005952380955" y="162.0" />
+      <point x="-79.28571428571422" y="71.0" />
+    </edge>
+    <edge source="controller.Controller" target="view.Options">
+      <point x="25.625" y="-49.0" />
+      <point x="620.2039098972922" y="1188.0" />
+      <point x="633.2708333333334" y="1188.0" />
+      <point x="-25.75" y="71.0" />
+    </edge>
+    <edge source="model.Task" target="model.Date">
+      <point x="-46.25" y="-82.0" />
+      <point x="198.76580298786195" y="172.0" />
+      <point x="822.0291666666668" y="172.0" />
+      <point x="-52.85714285714289" y="71.0" />
+    </edge>
+    <edge source="application.App" target="view.View">
+      <point x="30.0" y="-15.0" />
+      <point x="624.5789098972922" y="1386.0" />
+      <point x="993.7610527544351" y="1386.0" />
+      <point x="993.7610527544351" y="1228.0" />
+      <point x="1033.4375" y="1228.0" />
+      <point x="117.75" y="159.0" />
+    </edge>
+    <edge source="view.UsersChoiceListener" target="view.UsersChoiceEvent">
+      <point x="0.0" y="-15.0" />
+      <point x="840.0372432306256" y="608.0" />
+      <point x="867.7375000000002" y="608.0" />
+      <point x="-14.416666666666629" y="71.0" />
+    </edge>
+    <edge source="controller.Controller" target="view.View">
+      <point x="76.875" y="-49.0" />
+      <point x="671.4539098972922" y="1218.0" />
+      <point x="797.9375000000001" y="1218.0" />
+      <point x="-117.75" y="159.0" />
+    </edge>
+    <edge source="controller.Controller" target="view.UsersChoiceListener">
+      <point x="59.79166666666663" y="-49.0" />
+      <point x="654.3705765639588" y="1208.0" />
+      <point x="748.1875000000001" y="1208.0" />
+      <point x="748.1875000000001" y="830.0" />
+      <point x="774.3705765639589" y="830.0" />
+      <point x="-65.66666666666663" y="15.0" />
+    </edge>
+    <edge source="application.App" target="model.ListOfTasks">
+      <point x="-18.0" y="-15.0" />
+      <point x="576.5789098972922" y="1376.0" />
+      <point x="37.0" y="1376.0" />
+      <point x="37.0" y="830.0" />
+      <point x="239.73605275443504" y="830.0" />
+      <point x="-47.75" y="38.0" />
+    </edge>
+    <edge source="view.View" target="model.Date">
+      <point x="109.90000000000009" y="-159.0" />
+      <point x="1025.5875" y="830.0" />
+      <point x="1004.115802987862" y="830.0" />
+      <point x="1004.115802987862" y="182.0" />
+      <point x="927.7434523809526" y="182.0" />
+      <point x="52.85714285714289" y="71.0" />
+    </edge>
+    <edge source="view.View" target="view.Options">
+      <point x="-78.5" y="-159.0" />
+      <point x="837.1875000000001" y="800.0" />
+      <point x="684.7708333333334" y="800.0" />
+      <point x="25.75" y="71.0" />
+    </edge>
+    <edge source="model.ProjectCompare" target="model.Task">
+      <point x="0.0" y="-15.0" />
+      <point x="496.52083333333337" y="396.0" />
+      <point x="297.87294584500484" y="396.0" />
+      <point x="52.85714285714289" y="82.0" />
+    </edge>
+    <edge source="application.App" target="controller.Controller">
+      <point x="-6.0" y="-15.0" />
+      <point x="588.5789098972922" y="1366.0" />
+      <point x="543.3289098972922" y="1366.0" />
+      <point x="-51.25" y="49.0" />
+    </edge>
+    <edge source="controller.Controller" target="model.ListOfTasks">
+      <point x="-42.70833333333326" y="-49.0" />
+      <point x="551.8705765639589" y="1198.0" />
+      <point x="271.5693860877684" y="1198.0" />
+      <point x="-15.916666666666686" y="38.0" />
+    </edge>
+    <edge source="model.ListOfTasks" target="model.ProjectCompare">
+      <point x="76.39999999999998" y="-38.0" />
+      <point x="363.886052754435" y="608.0" />
+      <point x="496.52083333333337" y="608.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="model.FileManagement" target="model.Task">
+      <point x="0.0" y="-27.0" />
+      <point x="152.52083333333337" y="406.0" />
+      <point x="192.1586601307191" y="406.0" />
+      <point x="-52.85714285714283" y="82.0" />
+    </edge>
+    <edge source="view.View" target="view.UsersChoiceListener">
+      <point x="-47.09999999999991" y="-159.0" />
+      <point x="868.5875000000002" y="790.0" />
+      <point x="840.0372432306256" y="790.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="model.ListOfTasks" target="model.FileManagement">
+      <point x="-76.39999999999998" y="-38.0" />
+      <point x="211.08605275443506" y="608.0" />
+      <point x="192.02083333333337" y="608.0" />
+      <point x="39.5" y="27.0" />
+    </edge>
+    <edge source="model.ListOfTasks" target="model.Task">
+      <point x="0.0" y="-38.0" />
+      <point x="287.48605275443504" y="598.0" />
+      <point x="253.02083333333337" y="598.0" />
+      <point x="253.02083333333337" y="396.0" />
+      <point x="245.01580298786195" y="396.0" />
+      <point x="0.0" y="82.0" />
+    </edge>
+    <edge source="controller.Controller" target="view.UsersChoiceEvent">
+      <point x="42.70833333333337" y="-49.0" />
+      <point x="637.2872432306256" y="1198.0" />
+      <point x="721.0208333333334" y="1198.0" />
+      <point x="721.0208333333334" y="598.0" />
+      <point x="838.9041666666668" y="598.0" />
+      <point x="-43.25" y="71.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.40865384615384615" x="536.5" y="718.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

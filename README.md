@@ -52,9 +52,9 @@ Enter the title of the task:
 Enter the title of your task and press enter.
 
 Then the following message will appear:
-´´´java
+```java
 Enter the due date in the following format - YYYY-MM-DD
-´´´
+```
 Type in the due date of your task - keep in mind that the date has to be entered in the YYYY-MM-DD format.
 The application will make sure that you have entered a correct date and will ask you to enter the date again if that is not the case.
 If you enter your date correctly, you will see the screen:
